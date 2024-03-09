@@ -1,4 +1,4 @@
-import { NodeEnv } from '@/types';
+import { NodeEnv } from '../types';
 
 import { config as dotEnvConfig } from 'dotenv';
 dotEnvConfig();

@@ -1,6 +1,6 @@
 import http from 'http';
-import { applicationModule, databaseModule } from '@/modules';
-import { getEnvVariable } from '@/env';
+import { applicationModule, databaseModule } from './modules';
+import { getEnvVariable } from './env';
 
 export const startServer = async () => {
   const MONGO_DB_URI: string = getEnvVariable('MONGO_DB_URI') ?? '';

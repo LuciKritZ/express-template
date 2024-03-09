@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node -r tsconfig-paths/register --files src/index.ts",
-    "start:prod": "npm run build && node ./dist/src/index.js",
     "start:nodemon": "nodemon",
-    "build": "npx tsc",
+    "build": "rm -rf dist && npx tsc",
+    "start:prod": "npm run build && node ./dist/index.js",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint:check": "eslint .",
