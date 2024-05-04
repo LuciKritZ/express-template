@@ -1,6 +1,6 @@
 {
-  "name": "express-template",
-  "version": "1.0.0",
+  "name": "ts-express-mongo-template",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
+    "@types/bunyan": "^1.8.11",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.17",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "body-parser": "^1.20.2",
+    "bunyan": "^1.8.15",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
