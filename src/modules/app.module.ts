@@ -2,6 +2,7 @@ import express, { type Application, json, urlencoded, NextFunction, Response, Re
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
+import { BaseError, ErrorHandler, logger } from '@/shared';
 
 const applicationModule = (ORIGINS: string[] = []): Application => {
   const app = express();
@@ -30,6 +31,28 @@ const applicationModule = (ORIGINS: string[] = []): Application => {
       message: 'API is working',
     });
   });
+
+  // Error Handling
+  app.use(errorMiddleware);
+  const errorHandler = new ErrorHandler(logger);
+
+  process.on('uncaughtException', async (error: Error) => {
+    await errorHandler.handleError(error);
+    if (!errorHandler.isTrustedError(error)) process.exit(1);
+  });
+
+  process.on('unhandledRejection', async (reason: Error) => {
+    throw reason;
+  });
+
+  async function errorMiddleware(error: BaseError, req: Request, response: Response, next: NextFunction) {
+    if (!errorHandler.isTrustedError(error)) {
+      next(error);
+      return;
+    }
+
+    await errorHandler.handleError(error);
+  }
 
   return app;
 };
